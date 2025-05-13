@@ -1,5 +1,5 @@
 <div class="modal-backdrop" *ngIf="title">
-    <div class="modal-content">
+    <div class="modal-content" [ngClass]="type ? 'modal-' + type : ''">
         <h2 class="modal-title">{{ title }}</h2>
         <p class="modal-message" *ngIf="message">{{ message }}</p>
         <div class="modal-actions">

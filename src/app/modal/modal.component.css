@@ -67,3 +67,27 @@
 .cancel-btn:hover {
     background-color: #5a6268;
 }
+
+.modal-save .modal-title {
+    color: #007bff;
+}
+
+.modal-save .confirm-btn {
+    background-color: #007bff;
+}
+
+.modal-save .confirm-btn:hover {
+    background-color: #0056b3;
+}
+
+.modal-cancel .modal-title {
+    color: #e0532f;
+}
+
+.modal-cancel .cancel-btn {
+    background-color: #e0532f;
+}
+
+.modal-cancel .cancel-btn:hover {
+    background-color: #c0392b;
+}

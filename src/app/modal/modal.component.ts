@@ -11,6 +11,7 @@ export class ModalComponent {
   @Input() confirmButtonText: string = 'Yes';
   @Input() cancelButtonText: string = 'No';
   @Input() showCancelButton: boolean = true;
+  @Input() type: 'save' | 'cancel' | '' = '';
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();
 

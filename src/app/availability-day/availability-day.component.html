@@ -19,10 +19,10 @@
         <button class="cancel-btn" (click)="cancelEdit()">Cancel</button>
     </div>
 
-    <app-modal *ngIf="showSaveModal" title="Confirm" message="Are you sure you want to save these changes?" confirmButtonText="Save"
-        cancelButtonText="Cancel" (confirm)="confirmSave()" (cancel)="cancelSave()"></app-modal>
+    <app-modal *ngIf="showSaveModal" title="Are you sure you want to save?" type="save" confirmButtonText="Save"
+        cancelButtonText="No" (confirm)="confirmSave()" (cancel)="cancelSave()"></app-modal>
 
-    <app-modal *ngIf="showCancelModal" title="Unsaved Changes"
+    <app-modal *ngIf="showCancelModal" title="Unsaved Changes" type="cancel"
         message="You have made changes that have not been saved. Are you sure you want to discard these changes?"
         confirmButtonText="Discard Changes" cancelButtonText="Stay on Page" (confirm)="confirmCancel()"
         (cancel)="cancelCancel()"></app-modal>
