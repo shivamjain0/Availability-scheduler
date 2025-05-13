@@ -1,0 +1,30 @@
+<div class="outer-container">
+  <div class="form-container">
+    <div class="container">
+      <h1 class="heading">Set Availability</h1>
+      <div *ngFor="let day of days; let i = index" class="day-tab" [class.disabled]="!day.isEnabled">
+        <div class="day-header">
+          <label class="toggle">
+            <input type="checkbox" [checked]="day.isEnabled" (click)="toggleEnabled(i)">
+            <span class="slider"></span>
+          </label>
+          <span class="day-name">{{ day.day }}</span>
+          <div class="summary" *ngIf="!day.isExpanded">
+            <div class="time-wrapper">
+              <span class="time">{{ getDefaultTime(day) }}</span>
+            </div>
+            <span class="count" *ngIf="getAddedSlotsCount(day) > 0">
+              +{{ getAddedSlotsCount(day) }}
+            </span>
+          </div>
+          <button class="expand-btn" [disabled]="!day.isEnabled" (click)="toggleDay(i)">
+            <i class="fas" [ngClass]="day.isExpanded ? 'fa-chevron-down' : 'fa-chevron-right'"></i>
+          </button>
+        </div>
+        <div *ngIf="day.isExpanded" class="day-content">
+          <app-availability-day [dayData]="day" (save)="saveDays()"></app-availability-day>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

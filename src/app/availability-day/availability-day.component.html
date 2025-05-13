@@ -1,0 +1,29 @@
+<div class="day-card">
+    <div *ngFor="let slot of tempSlots; let i = index" class="slot">
+        <select [ngModel]="militaryToTime(slot.startTime)" (ngModelChange)="slot.startTime = timeToMilitary($event)">
+            <option *ngFor="let time of timeOptions" [value]="time">{{ time }}</option>
+        </select>
+        <span class="to">to</span>
+        <select [ngModel]="militaryToTime(slot.endTime)" (ngModelChange)="slot.endTime = timeToMilitary($event)">
+            <option *ngFor="let time of timeOptions" [value]="time">{{ time }}</option>
+        </select>
+        <button *ngIf="slot.isDefault" class="add-btn" (click)="addSlot()">
+            <i class="fas fa-plus"></i>
+        </button>
+        <button *ngIf="!slot.isDefault" class="delete-btn" (click)="deleteSlot(i)">
+            <i class="fas fa-trash"></i>
+        </button>
+    </div>
+    <div class="action-buttons">
+        <button class="save-btn" (click)="saveSlot()">Save</button>
+        <button class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+    </div>
+
+    <app-modal *ngIf="showSaveModal" title="Confirm" message="Are you sure you want to save these changes?" confirmButtonText="Save"
+        cancelButtonText="Cancel" (confirm)="confirmSave()" (cancel)="cancelSave()"></app-modal>
+
+    <app-modal *ngIf="showCancelModal" title="Unsaved Changes"
+        message="You have made changes that have not been saved. Are you sure you want to discard these changes?"
+        confirmButtonText="Discard Changes" cancelButtonText="Stay on Page" (confirm)="confirmCancel()"
+        (cancel)="cancelCancel()"></app-modal>
+</div>

@@ -1,0 +1,10 @@
+<div class="modal-backdrop" *ngIf="title">
+    <div class="modal-content">
+        <h2 class="modal-title">{{ title }}</h2>
+        <p class="modal-message" *ngIf="message">{{ message }}</p>
+        <div class="modal-actions">
+            <button class="confirm-btn" (click)="onConfirm()">{{ confirmButtonText }}</button>
+            <button class="cancel-btn" *ngIf="showCancelButton" (click)="onCancel()">{{ cancelButtonText }}</button>
+        </div>
+    </div>
+</div>
