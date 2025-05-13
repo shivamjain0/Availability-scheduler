@@ -12,11 +12,12 @@
     border-radius: 5px;
 }
 
-select {
+input[type="time"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    width: 120px;
+    width: 104px;
+    font-size: 14px;
 }
 
 .to {

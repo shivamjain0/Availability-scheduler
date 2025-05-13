@@ -20,49 +20,22 @@ interface DayAvailability {
 })
 export class AvailabilityDayComponent implements OnChanges {
   @Input() dayData!: DayAvailability;
+
   @Output() save = new EventEmitter<void>();
 
   tempSlots: TimeSlot[] = [];
-  showSaveModal: boolean = false;
-  showCancelModal: boolean = false;
 
-  timeOptions: string[] = this.generateTimeOptions();
+  showSaveModal: boolean = false;
+
+  showCancelModal: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['dayData'] && this.dayData.isExpanded) {
       this.tempSlots = JSON.parse(JSON.stringify(this.dayData.slots));
     }
-    if (changes['dayData'] && !this.dayData.isExpanded) {
-      this.tempSlots = JSON.parse(JSON.stringify(this.dayData.slots));
-    }
-  }
-
-  generateTimeOptions(): string[] {
-    const options: string[] = [];
-    for (let hour = 0; hour < 24; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        const period = hour >= 12 ? 'PM' : 'AM';
-        const adjustedHour = hour % 12 || 12;
-        const time = `${adjustedHour}:${minute.toString().padStart(2, '0')} ${period}`;
-        options.push(time);
-      }
-    }
-    return options;
-  }
-
-  timeToMilitary(time: string): string {
-    const [timePart, period] = time.split(' ');
-    let [hour, minute] = timePart.split(':').map(Number);
-    if (period === 'PM' && hour !== 12) hour += 12;
-    if (period === 'AM' && hour === 12) hour = 0;
-    return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
-  }
-
-  militaryToTime(military: string): string {
-    const [hour, minute] = military.split(':').map(Number);
-    const period = hour >= 12 ? 'PM' : 'AM';
-    const adjustedHour = hour % 12 || 12;
-    return `${adjustedHour}:${minute.toString().padStart(2, '0')} ${period}`;
+    // if (changes['dayData'] && !this.dayData.isExpanded) {
+    //   this.tempSlots = JSON.parse(JSON.stringify(this.dayData.slots));
+    // }
   }
 
   addSlot() {

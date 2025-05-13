@@ -1,12 +1,8 @@
 <div class="day-card">
     <div *ngFor="let slot of tempSlots; let i = index" class="slot">
-        <select [ngModel]="militaryToTime(slot.startTime)" (ngModelChange)="slot.startTime = timeToMilitary($event)">
-            <option *ngFor="let time of timeOptions" [value]="time">{{ time }}</option>
-        </select>
+        <input type="time" [(ngModel)]="slot.startTime" step="900" />
         <span class="to">to</span>
-        <select [ngModel]="militaryToTime(slot.endTime)" (ngModelChange)="slot.endTime = timeToMilitary($event)">
-            <option *ngFor="let time of timeOptions" [value]="time">{{ time }}</option>
-        </select>
+        <input type="time" [(ngModel)]="slot.endTime" step="900" />
         <button *ngIf="slot.isDefault" class="add-btn" (click)="addSlot()">
             <i class="fas fa-plus"></i>
         </button>
